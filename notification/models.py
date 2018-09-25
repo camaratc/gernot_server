@@ -14,7 +14,7 @@ class Notification(models.Model):
     message = models.TextField("Mensagem", max_length=2000)
     author = models.CharField("Autor", max_length=100)
     tag = models.IntegerField("Categoria", choices=TAG_CHOICE)
-    creation_date = models.DateTimeField("Data de Criação", editable=False, default=timezone.now())
+    creation_date = models.DateTimeField("Data de Criação", editable=False, default=timezone.now().isoformat())
     send_date = models.DateTimeField("Data de Envio", null=True, blank=True)
 
     class Meta:
