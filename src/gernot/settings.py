@@ -25,7 +25,7 @@ SECRET_KEY = '@c-dg6g(s+v33ro*%rn#vz186w&+smv8*@x130z^!k@4&wkvb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'gernot',
         'USER': 'admin',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': 'db',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
