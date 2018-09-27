@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  gernot:
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: "admin"
+      MYSQL_DATABASE: gernot
+    networks: 
+      - gernot
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./src/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+  app:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src/:/code
+    ports:
+      - "8030:8000"
+    depends_on: 
+      - db
+    networks:
+      - gernot

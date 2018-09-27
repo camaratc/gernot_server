@@ -1,5 +1,5 @@
-env/
+src/env/
 .vscode/
-gernot/__pycache__/
-notification/__pycache__/
-notification/migrations/__pycache__/
+src/gernot/__pycache__/
+src/notification/__pycache__/
+src/notification/migrations/__pycache__/
