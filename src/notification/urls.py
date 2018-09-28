@@ -8,4 +8,5 @@ app_name = 'api'
 urlpatterns = [
     path('', RedirectView.as_view(url='notification/', permanent=False), name='index'),
     path('notification/', views.api_notification, name='api_notification'),
+    path('all', views.info_notification, name="info_notification"),
 ]
