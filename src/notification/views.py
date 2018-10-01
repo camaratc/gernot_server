@@ -5,16 +5,13 @@ from django.http import HttpResponse
 import datetime
 
 from .models import Notification
-
-def moveZeros(arr): 
-    return [nonZero for nonZero in arr if nonZero!=0] + [Zero for Zero in arr if Zero==0] 
   
 def api_notification(request):
     obj_list = []
 
     lasts_forever = Notification.objects.filter(time_active__lte=0)
-
     temp_notification = []
+
     sql = 'SELECT * FROM notification_notification WHERE time_active != 0'
 
     for item in Notification.objects.raw(sql):
@@ -29,16 +26,25 @@ def api_notification(request):
         if obj != None:
             temp_notification.append(obj)
 
-    # print(lasts_forever)
-    # print(temp_notification)
-
     for j in temp_notification:
         obj_list.append(j)
     for i in lasts_forever:
         obj_list.append(i)
 
-    obj_list = serializers.serialize('json', obj_list)
+    # Ordenar a lista pelo tempo ativo
 
+    obj_list.sort(key=lambda x: x.time_active, reverse=False)
+
+    # Mandar as notificações permanentes para o final da lista
+    count = 0
+    for a in range(len(obj_list)):
+        while obj_list[a].time_active == 0:
+            if count == len(obj_list):
+                break
+            obj_list += [obj_list.pop(a)]
+            count += 1
+
+    obj_list = serializers.serialize('json', obj_list)
     return HttpResponse(obj_list, content_type="application/json")
 
 def info_notification(request):
