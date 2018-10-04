@@ -11,7 +11,7 @@ TAG_CHOICE = (
 
 class Notification(models.Model):
     title = models.CharField("Título", max_length=45)
-    message = models.TextField("Mensagem", max_length=2000)
+    message = models.TextField("Mensagem", max_length=155)
     author = models.CharField("Autor", max_length=100)
     tag = models.IntegerField("Categoria", choices=TAG_CHOICE)
     time_active = models.IntegerField("Tempo ativa", default=15)
