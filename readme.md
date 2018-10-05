@@ -9,4 +9,4 @@
 - ```python manage.py migrate```
 - ```python manage.py createsuperuser```
 
-3 - Sair do bash e reiniciar o container: ````sudo docker-compose restart app```
+3 - Sair do bash e reiniciar o container: ```sudo docker-compose restart app```
